@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-import http.client
 import pandas as pd
 import math
 import numpy as np
@@ -25,26 +22,11 @@ from mpl_toolkits.mplot3d import Axes3D
 from hmm_series import model
 
 class Earth(model):
-	def __init__(self,query):
-		self.query = query
-	def get_earth(self):
-		'''
-		get earthquake data from usgs.
-		-----------
-		default query: 
-		significant_week
-		4.5_week
-		'''
-		query = self.query
-		url01="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/"
-		url01+=query
-		url01+=".geojson"
-		response = urllib.request.urlopen(url01)
-		data = json.loads(response.read())
-		return data
+	def __init__(self, data):
+		self.data = data
 
 	def extract_earth(self):
-		earth_dict = self.get_earth()
+		earth_dict = data 
 		dataDic={"time":pd.Series(),"longit":pd.Series(),"latit":pd.Series(),
 				 "depth":pd.Series(),"mag":pd.Series(),
 				 "sig":pd.Series(),"place":pd.Series()}
